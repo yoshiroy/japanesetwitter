@@ -1,0 +1,15 @@
+
+Name of Quantlet:         'JapaneseTwitter'
+
+Published in:             'Rによるデータマイニング入門 (Introduction to Datamining in R)'
+
+Description:              'Textminig and visualization for tweets in Japanese.'
+
+Keywords:                 'textminig, word cloud, network diagram'
+
+Author[New]:               Yoshiro Yamamoto
+
+Submitted:                '2016-05-09, Yoshiro Yamamoto'
+
+
+Output:                   'Some plots of number of tweet in a week, Word Cloud and Network giagram.'
