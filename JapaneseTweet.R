@@ -13,10 +13,10 @@ require(igraph)
 # https://syncer.jp/twitter-api-matome/get/search/tweets
 #
 # Please change following keys into your own twitter Apps key
-APIKey <- "6uSqLddicwPWF1C5qiLYgFxii"
-APISecret <- "o8mKGWMOXJpGqwR2F5rH12iWXf1g6WsZlP7lROB8fSD5t8IIeD"
-accessToken <- "74756179-Qbtef8SRTpEKhoYif7tygbTOeeSp1ApaOibPPsvqm"
-accessSecret <- "prbXalyRt82kYIzYaxZQboyNSCXTvv2iL2x6tQQDSr0wr"
+APIKey <- "7buGopb20WHEc7TzTytCyxyXt"
+APISecret <- "ssvyWu3w4fue0l8XuLaLYzsTYH1eTbiAGXzMNGLRfwmfEKan8N"
+accessToken <- "729691054731984897-w9srwfsYsH5x97ZEdYCFMzjXpaUEjOX"
+accessSecret <- "CT85vFEDCpcIVXmDuDZI8iWxcDT0YI8OFNyELypJuUiJG"
 
 setup_twitter_oauth(APIKey, APISecret, accessToken, accessSecret)
 
