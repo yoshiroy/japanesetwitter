@@ -3,7 +3,7 @@ require(ROAuth)
 require(base64enc)
 require(dplyr)
 require(ggplot2)
-require(RMeCab)    # install MeCab before execute
+require(RMeCab)    #install.packages("RMeCab", repos = "http://rmecab.jp/R")
 require(wordcloud)
 require(RColorBrewer)
 require(igraph)
@@ -13,10 +13,10 @@ require(igraph)
 # https://syncer.jp/twitter-api-matome/get/search/tweets
 #
 # Please change following keys into your own twitter Apps key
-APIKey <- "7buGopb20WHEc7TzTytCyxyXt"
-APISecret <- "ssvyWu3w4fue0l8XuLaLYzsTYH1eTbiAGXzMNGLRfwmfEKan8N"
-accessToken <- "729691054731984897-w9srwfsYsH5x97ZEdYCFMzjXpaUEjOX"
-accessSecret <- "CT85vFEDCpcIVXmDuDZI8iWxcDT0YI8OFNyELypJuUiJG"
+APIKey <- "6uSqLddicwPWF1C5qiLYgFxii"
+APISecret <- "o8mKGWMOXJpGqwR2F5rH12iWXf1g6WsZlP7lROB8fSD5t8IIeD"
+accessToken <- "74756179-Qbtef8SRTpEKhoYif7tygbTOeeSp1ApaOibPPsvqm"
+accessSecret <- "prbXalyRt82kYIzYaxZQboyNSCXTvv2iL2x6tQQDSr0wr"
 
 setup_twitter_oauth(APIKey, APISecret, accessToken, accessSecret)
 
@@ -36,7 +36,7 @@ tw.daily <- tw.df %>%
 tw.daily
 ggplot(tw.daily, aes(twdate,cnt))+ geom_bar(stat="identity")
 # PDF output
-cairo_pdf("tw.daily.pdf", width=8, height=8, family="MixMix 1P")
+cairo_pdf("tw-daily.pdf", width=8, height=8, family="MixMix 1P")
 ggplot(tw.daily, aes(twdate,cnt))+ geom_bar(stat="identity")+  theme_bw(base_size=18)
 dev.off()
 
@@ -47,7 +47,7 @@ tw.hourly <- tw.df %>%
 tw.hourly
 ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity")
 # PDF output
-cairo_pdf("tw.hourly.pdf", width=8, height=8, family="MixMix 1P")
+cairo_pdf("tw-hourly.pdf", width=8, height=8, family="MixMix 1P")
 ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity", fill=I("#666666")) +
   theme_bw(base_size=18)
 dev.off()
