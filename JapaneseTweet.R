@@ -3,7 +3,9 @@ require(ROAuth)
 require(base64enc)
 require(dplyr)
 require(ggplot2)
-require(RMeCab)    #install.packages("RMeCab", repos = "http://rmecab.jp/R")
+# pre install RMeCab for Win
+#install.packages("RMeCab", repos = "http://rmecab.jp/R")
+require(RMeCab)    
 require(wordcloud)
 require(RColorBrewer)
 require(igraph)
@@ -36,9 +38,9 @@ tw.daily <- tw.df %>%
 tw.daily
 ggplot(tw.daily, aes(twdate,cnt))+ geom_bar(stat="identity")
 # PDF output
-cairo_pdf("tw-daily.pdf", width=8, height=8, family="MixMix 1P")
-ggplot(tw.daily, aes(twdate,cnt))+ geom_bar(stat="identity")+  theme_bw(base_size=18)
-dev.off()
+#cairo_pdf("tw-daily.pdf", width=8, height=8, family="MixMix 1P")
+#ggplot(tw.daily, aes(twdate,cnt))+ geom_bar(stat="identity")+  #theme_bw(base_size=18)
+#dev.off()
 
 # total number of tweets for each day and hour
 tw.hourly <- tw.df %>%
@@ -47,10 +49,10 @@ tw.hourly <- tw.df %>%
 tw.hourly
 ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity")
 # PDF output
-cairo_pdf("tw-hourly.pdf", width=8, height=8, family="MixMix 1P")
-ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity", fill=I("#666666")) +
-  theme_bw(base_size=18)
-dev.off()
+#cairo_pdf("tw-hourly.pdf", width=8, height=8, family="MixMix 1P")
+#ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity", #fill=I("#666666")) +
+#  theme_bw(base_size=18)
+#dev.off()
 
 # Preprocessing  ("RMeCab" package)
 tw.txt <- unique(tw.df$text)
@@ -73,19 +75,22 @@ ggplot(tw.wcnt2, aes(x=reorder(word,freq), y=freq)) +
   geom_bar(stat="identity", fill="grey",  color="black") +
   theme_bw(base_size=20) + coord_flip() + xlab("word")
 # PDF output
-cairo_pdf("tw-wordcount.pdf", family="MigMix 1P", width=12, height=8)
-ggplot(tw.wcnt2, aes(x=reorder(word,freq), y=freq)) + 
-  geom_bar(stat="identity", fill="grey",  color="black") +
-  theme_bw(base_size=20) + coord_flip() + xlab("word")
-dev.off()
+#cairo_pdf("tw-wordcount.pdf", family="MigMix 1P", width=12, height=8)
+#ggplot(tw.wcnt2, aes(x=reorder(word,freq), y=freq)) + 
+#  geom_bar(stat="identity", fill="grey",  color="black") +
+#  theme_bw(base_size=20) + coord_flip() + xlab("word")
+#dev.off()
 
 # word cloud ("wordcloud" package)
 tw.wcnt <- subset(tw.wcnt, tw.wcnt[, 1] >= 30)
 pal <- brewer.pal(8,"Dark2")
-cairo_pdf("tw-wordcloud.pdf", family="Meiryo", width=8, height=8)
 wordcloud(row.names(tw.wcnt), tw.wcnt[, 1], scale = c(4, .2),
           random.order = T, rot.per = .15, colors = pal)
-dev.off()
+# PDF output
+#cairo_pdf("tw-wordcloud.pdf", family="Meiryo", width=8, height=8)
+#wordcloud(row.names(tw.wcnt), tw.wcnt[, 1], scale = c(4, .2),
+#          random.order = T, rot.per = .15, colors = pal)
+#dev.off()
 
 # Network analysis ("igraph" package)
 tw.file <- tempfile()
@@ -102,11 +107,16 @@ tw.graph <- graph.data.frame(tw.bigram)
 eb <- edge.betweenness.community(tw.graph)
 
 # Output network diagram
-cairo_pdf("tw-network.pdf", family="Meiryo", width=8, height=8)
 plot(tw.graph, vertex.label=V(tw.graph)$name,
      vertex.label.family="Meiryo",
      vertex.size=3*log(degree(tw.graph)),
      vertex.color=cut_at(eb, 10), edge.arrow.size=0.1,
      vertex.label.cex=1, edge.arrow.width=1)
-dev.off()
-
+# PDF output
+#cairo_pdf("tw-network.pdf", family="Meiryo", width=8, height=8)
+#plot(tw.graph, vertex.label=V(tw.graph)$name,
+#     vertex.label.family="Meiryo",
+#     vertex.size=3*log(degree(tw.graph)),
+#     vertex.color=cut_at(eb, 10), edge.arrow.size=0.1,
+#     vertex.label.cex=1, edge.arrow.width=1)
+#dev.off()
