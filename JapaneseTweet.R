@@ -58,7 +58,7 @@ ggplot(tw.hourly, aes(twhour, cnt))+ geom_bar(stat="identity")
 # Preprocessing  ("RMeCab" package)
 tw.txt = unique(tw.df$text)
 tw.txt = gsub("[[:print:]]", "", tw.txt, perl=TRUE)
-tw.txt = iconv(tw.txt, from="UTF-8", to="CP932", "")
+tw.txt = iconv(tw.txt, from="UTF-8", to="CP932", "")   # for Windos (SHIFT-JIS)
 tw.txt = tw.txt[-grep("^RT", tw.txt)]
 
 tw.dmat = docMatrixDF(tw.txt, pos = c("名詞"))
