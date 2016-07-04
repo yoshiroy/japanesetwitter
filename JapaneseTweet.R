@@ -4,7 +4,7 @@ require(base64enc)
 require(dplyr)
 require(ggplot2)
 # pre install RMeCab for Win
-#install.packages("RMeCab", repos = "http://rmecab.jp/R")
+# install.packages("RMeCab", repos = "http://rmecab.jp/R")
 require(RMeCab)    
 require(wordcloud)
 require(RColorBrewer)
